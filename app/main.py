@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 import os
-from torch_utils import *
+from app.torch_utils import *
 
 app = Flask(__name__)
 
