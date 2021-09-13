@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Few Shot Learning - JAKI Prototype</title>
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/aos/aos.js" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+  <!-- GOOGLE BAR CHART -->
+  <script type="text/javascript" src="static/assets/js/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Target", "Similarity", { role: "style" } ],
+        ["Water", {{cl_1}}, "#b87333"],
+        ["Communication", {{cl_2}}, "silver"],
+        ["Flood", {{cl_3}}, "#CF38FD"],
+        ["Garbage", {{cl_4}}, "color: #E6A6F3"],
+        ["Gutter Cover", {{cl_5}}, "gold"],
+        ['Illegal Parking', {{cl_6}}, 'grey'],
+        ['Building', {{cl_7}}, '#E922DC'],
+        ['Park', {{cl_8}}, 'green'],
+        ['Road', {{cl_9}}, 'black'],
+        ['Sidewalk', {{cl_10}}, '#E97373'],
+        ['Tree', {{cl_11}}, 'A2E691'],
+        ['Vandalism', {{cl_12}}, 'red'],
+        ['Waterway', {{cl_13}}, '#3138F0']
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        bars: 'horizontal',
+        title: "Similarity Score (%)",
+        width: 600,
+        height: 500,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_material"));
+      chart.draw(view, options);
+  }
+  </script>
+
+  <!-- FOOTER -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: NewBiz - v4.3.0
+  * Template URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+      <div class="logo">
+        <!-- Uncomment below if you prefer to use an text logo -->
+        <!-- <h5><a href="index.html">Few Shot Learning</a></h5> -->
+        <a href="index.html"> <img src="static/assets/img/logol2l.png" alt="" class="mt-2"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#about">Introduction</a></li>
+          <li><a class="nav-link scrollto" href="#services">Prediction</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- #header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="clearfix">
+    <div class="container" data-aos="fade-up">
+      <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+        <h2>Building<br><span>Deep Learning Model</span><br>Learning to Learn</h2>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>Introduction</h3>
+          <p>This Project is from Data Science Trainee program in <a href="https://smartcity.jakarta.go.id/new/">Jakarta Smart City.</a>
+          In this project we are trying to implement Few Shot Learning method in order to categorize CRM (Cepat Respon Masyarakat) image report from JAKI (Jakarta Kini) app.
+          As Trainee I was mentored by these great people:<br>
+          <a href="https://id.linkedin.com/in/irfan-dwiki-bhaswara-a982a3143"><b>Irfan Dwiki Bhaswara</b></a><br>
+          <a href="https://id.linkedin.com/in/andy-ernesto-89b1b0160"><b>Andy Ernesto</b></a><br>
+          <a href="https://id.linkedin.com/in/awidyafirdaussahararini"><b>Awidya Firdaus Sahararini</b></a>
+
+            
+
+        </p>
+        </header>
+
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <p>
+              Common practice for machine learning applications is to feed as much data as the model can take. 
+              This is because in most machine learning applications feeding more data enables the model to predict better. 
+              However, few-shot learning aims to build accurate machine learning models with less training data
+              <a href="https://research.aimultiple.com/few-shot-learning/"> (aimultiple).</a>
+            </p>
+            <p>
+              <b>Few-Shot Learning</b> is an example of meta-learning, where a learner is trained on several related tasks, 
+              during the meta-training phase, so that it can generalize well to unseen (but related) tasks with just few examples.
+              An effective approach to the Few-Shot Learning problem is to learn a common representation 
+              for various tasks <a href="https://paperswithcode.com/task/few-shot-learning"> (paperswithcode).</a>
+            </p>
+          </div>
+
+          <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
+            <a href="https://arxiv.org/pdf/1904.05046.pdf">
+            <img src="static/assets/img/fsl.svg" class="img-fluid" alt="">
+            </a>
+          </div>
+        </div>
+
+        <div class="row about-extra">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="static/assets/img/data_dist.svg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-5 pt-lg-0" data-aos="fade-left">
+            <h4>Datasets</h4>
+            <p>
+              The datasets we use in this project is from CRM report in JAKI aplication, after cleaning process we get 13 class target which have distinction from each other.
+            </p>
+            <p>
+              In Training process we use 10 classes and 3 classes for evaluation which are the lowest number of samples; Communication Netwok, Clean Water Network and Sidewalk.
+              Training process use 5-Way 5-Shot for each task and trained for 2000 tasks.
+            </p>
+          </div>
+        </div>
+
+        <div class="row about-extra">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+            <img src="static/assets/img/method.svg" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-right">
+            <h4>Methodology</h4>
+            <p>
+              We training two model architectures base on Relation Network (Sung et al., 2018) and Prototypical Network (Snell et al., 2017) for feature extractor we use three different 
+              pretrained models on ImageNet VGG16, Resnet50 and MobileNetV3.              
+            </p>
+            <p>
+              Evaluation is done by seeing accuracy on three unseen class; Communication Netwok, Clean Water Network and Sidewalk if the models don't learn we look back the dataset and clean it again.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>Visual Recognition</h3>
+          <p>This is the <b>Prototypical Network with MobileNetV3</b> as the feature extractor,
+            Similarity Score is gotten by converting Euclidean Distance </p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <form method="POST" action="#services" enctype="multipart/form-data">
+
+              <div class="form-group">
+                <label>Select image</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="image" id="image">
+                  <label class="custom-file-label" for="image">Select image...</label>
+                  <br>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Upload</button>
+              <br>
+              {%if image_loc%}
+                <br>
+                <!-- <img src=static/image.jpg class="mb-4" width="224" height="224" alt=""> -->
+                <img src=static/image.PNG class="ml-5"
+                style="object-fit:fill;
+                          width:400px;
+                          height:300px;
+                          border: solid 1px #CCC"/>
+                <div class="ml-5" style="width: 400px;">
+                  <br>
+                  <h5> Prediction: {{prediction}} | Similarity Score: {{similar}}%</h5>
+                </div>
+                <!-- <h5>Similarity Score : {{similar}} %</h5> -->
+              {%endif%}
+            </form>
+          </div>
+
+          <div class="col-lg-6">
+              <div id="barchart_material"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+	<section id="footer">
+		<div class="container">
+			<div class="row text-center text-xs-center text-sm-left text-md-left">
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/said-rasidin/"><i class="bi bi-linkedin"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.github.com/said-rasidin/"><i class="bi bi-github"></i></a></li>
+						<li class="list-inline-item"><a href="mailto:said-rasidin@pm.me"><i class="bi bi-envelope"></i></a></li>
+					</ul>
+				</div>
+				<hr>
+			</div>	
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					<p class="h6">©2021 Said Rasidin. All rights reserved.</p>
+          <p> Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
+          <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=NewBiz
+        -->
+				</div>
+				<hr>
+			</div>	
+		</div>
+	</section>
+	<!-- ./Footer -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+  </body>
+
+</html>
