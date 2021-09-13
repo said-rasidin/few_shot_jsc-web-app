@@ -32,14 +32,14 @@ def upload_predict():
             image_location = os.path.join(app.config['UPLOAD_FOLDER'], "image.PNG")
             file.save(image_location)
             sim_all, sim_max, predict_class = predict_one_img(MODEL, file)
-            return render_template("home.html", cl_1 = sim_all[0], cl_2 = sim_all[1], cl_3 = sim_all[2], 
+            return render_template("index.html", cl_1 = sim_all[0], cl_2 = sim_all[1], cl_3 = sim_all[2], 
                                     cl_4 = sim_all[3], cl_5 = sim_all[4], cl_6 = sim_all[5], cl_7 = sim_all[6], 
                                     cl_8 = sim_all[7], cl_9 = sim_all[8], cl_10 = sim_all[9], cl_11 = sim_all[10],
                                     cl_12 = sim_all[11], cl_13 = sim_all[12],
                                     prediction=predict_class, 
                                     similar=sim_max, 
                                     image_loc=image_location)
-    return render_template("home.html",cl_1 = 0, cl_2 = 0, cl_3 = 0, 
+    return render_template("index.html",cl_1 = 0, cl_2 = 0, cl_3 = 0, 
                                     cl_4 = 0, cl_5 = 0, cl_6 = 0, cl_7 = 0, 
                                     cl_8 = 0, cl_9 = 0, cl_10 = 0, cl_11 = 0,
                                     cl_12 = 0, cl_13 = 0,
