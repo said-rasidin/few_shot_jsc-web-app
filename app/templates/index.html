@@ -58,7 +58,7 @@
       var options = {
         bars: 'horizontal',
         title: "Similarity Score (%)",
-        width: 600,
+        width: 450,
         height: 500,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
@@ -92,14 +92,16 @@
         <!-- <h5><a href="index.html">Few Shot Learning</a></h5> -->
         <a href=#> <img src="static/assets/img/logol2l.png" alt="" class="mt-2"></a>
       </div>
-
+      
+      <!-- .navbar -->
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#about">Introduction</a></li>
           <li><a class="nav-link scrollto" href="#services">Prediction</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
 
     </div>
   </header><!-- #header -->
@@ -222,12 +224,12 @@
               {%if image_loc%}
                 <br>
                 <!-- <img src=static/image.jpg class="mb-4" width="224" height="224" alt=""> -->
-                <img src=static/image.PNG class="ml-5"
+                <img src=static/image.PNG class="ml-3"
                 style="object-fit:fill;
-                          width:400px;
+                          width:380px;
                           height:300px;
                           border: solid 1px #CCC"/>
-                <div class="ml-5" style="width: 400px;">
+                <div class="ml-3" style="width: 450px;">
                   <br>
                   <h5> Prediction: {{prediction}} | Similarity Score: {{similar}}%</h5>
                 </div>
