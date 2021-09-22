@@ -6,9 +6,22 @@ from app.torch_utils import *
 app = Flask(__name__)
 
 MODEL = load_model("app/proto_mobilenetv3_13class.pth")
-UPLOAD_FOLDER = "app/static"
+UPLOAD_FOLDER = "static"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+INDEX_LABEL = {0: 'Clean Water Network',
+                1: 'Communication Network',
+                2: 'Flood',
+                3: 'Garbage',
+                4: 'Gutter Cover',
+                5: 'Illegal Parking',
+                6: 'Layout and Building',
+                7: 'Park',
+                8: 'Road',
+                9: 'Sidewalk',
+                10: 'Tree',
+                11: 'Vandalism',
+                12: 'Waterway'}
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -47,40 +60,16 @@ def upload_predict():
 def predict_API():
     if request.method == 'POST':
         image_file = request.files.get('file')
-        if image_file:
+        if image_file and allowed_file(image_file.filename):
             image_byte = image_file.read() 
             sim_all, sim_max, predict_class = predict_one_img(MODEL, image_file)
-            return jsonify({'Top_Predict':
-                            {'Prediction': predict_class, 'Similarity_score':sim_max},
-                            'All_Predict': 
-                            {'Clean Water Network':sim_all[0],
-                            'Communication Network': sim_all[1],
-                            'Flood':sim_all[2],
-                            'Garbage':sim_all[3],
-                            'Gutter Cover':sim_all[4],
-                            'Illegal Parking':sim_all[5],
-                            'Layout and Building':sim_all[6],
-                            'Park':sim_all[7],
-                            'Road':sim_all[8],
-                            'Sidewalk':sim_all[9],
-                            'Tree':sim_all[10],
-                            'Vandalism':sim_all[11],
-                            'Waterway':sim_all[12]}}
+            return jsonify({'class': list(INDEX_LABEL.values()),
+                            'similarity_score' : sim_all,
+                            'top_predict': predict_class,
+                            'top_similarity':sim_max}
                             )
-    return jsonify({'Top_Predict':
-                    {'Prediction': 'None', 'Similarity_score':0},
-                    'All_Predict': 
-                    {'Clean Water Network':0,
-                    'Communication Network':0,
-                    'Flood':0,
-                    'Garbage':0,
-                    'Gutter Cover':0,
-                    'Illegal Parking':0,
-                    'Layout and Building':0,
-                    'Park':0,
-                    'Road':0,
-                    'Sidewalk':0,
-                    'Tree':0,
-                    'Vandalism':0,
-                    'Waterway':0}}
-                    )
+    return jsonify({'class': list(INDEX_LABEL.values()),
+                            'similarity_score' : 0,
+                            'top_predict': 0,
+                            'top_similarity':0}
+                            )
