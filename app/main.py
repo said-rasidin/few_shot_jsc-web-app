@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, flash, redirect
 from werkzeug.utils import secure_filename
 import os
 from app.torch_utils import *
@@ -6,7 +6,7 @@ from app.torch_utils import *
 app = Flask(__name__)
 
 MODEL = load_model("app/proto_mobilenetv3_13class.pth")
-UPLOAD_FOLDER = "static"
+UPLOAD_FOLDER = "app/static"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 INDEX_LABEL = {0: 'Clean Water Network',
